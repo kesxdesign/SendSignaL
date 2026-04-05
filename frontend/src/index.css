@@ -1,0 +1,36 @@
+@import './variables.css';
+
+:root {
+  font-family: var(--sys-body-medium-fontfamily), Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: var(--sys-body-medium-lineheight);
+  font-weight: var(--sys-body-medium-fontweight);
+  
+  color: var(--sys-surface-color-roles-on-surface);
+  background-color: var(--sys-surface-color-roles-surface);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}

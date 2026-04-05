@@ -1,0 +1,78 @@
+.table-container {
+  background: var(--sys-surface-color-roles-surface);
+  border: 1px solid var(--sys-outline-color-role-outline);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.standard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.standard-table th, .standard-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--sys-outline-color-role-outline);
+}
+
+.standard-table th {
+  font-family: var(--sys-label-large-fontfamily);
+  font-size: var(--sys-label-large-fontsize);
+  font-weight: 600;
+  color: var(--sys-surface-color-roles-on-surface-variant);
+  background: var(--sys-surface-color-roles-surface-container);
+}
+
+.standard-table td {
+  font-family: var(--sys-body-medium-fontfamily);
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface);
+}
+
+.standard-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.standard-table tbody tr:hover {
+  background: var(--sys-surface-color-roles-surface-container-lowest);
+}
+
+.action-col {
+  text-align: right;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--sys-label-small-fontfamily);
+  font-size: var(--sys-label-small-fontsize);
+  font-weight: 600;
+}
+
+.status-badge.new {
+  background: var(--sys-primary-color-roles-primary-container);
+  color: var(--sys-primary-color-roles-on-primary-container);
+}
+
+.status-badge.replied {
+  background: var(--sys-succss-color-role-success-container);
+  color: var(--sys-succss-color-role-on-success-container);
+}
+
+.status-badge.contacted {
+  background: var(--sys-warning-container);
+  color: var(--sys-on-warning-container);
+}
+
+.status-badge.opted_out {
+  background: var(--sys-error-color-roles-error-container);
+  color: var(--sys-error-color-roles-on-error-container);
+}

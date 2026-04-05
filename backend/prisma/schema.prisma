@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  name           String
+  passwordHash   String
+  roleId         String
+  role           Role           @relation(fields: [roleId], references: [id])
+  leads          Lead[]
+  csvImports     CSVImport[]
+  notifications  Notification[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  deletedAt      DateTime?
+}
+
+model Role {
+  id          String           @id @default(cuid())
+  name        String           @unique // "Admin", "User"
+  permissions RolePermission[]
+  users       User[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Permission {
+  id        String           @id @default(cuid())
+  action    String           @unique // "read:leads", "write:campaigns"
+  roles     RolePermission[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+}
+
+model Lead {
+  id             String           @id @default(cuid())
+  first_name     String
+  last_name      String?
+  phone_number   String
+  source         String
+  status         String           @default("NEW") // enum: NEW, CONTACTED, REPLIED, OPTED_OUT
+  ownerId        String
+  owner          User             @relation(fields: [ownerId], references: [id])
+  conversations  Conversation[]
+  skillExecutions SkillExecution[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  deletedAt      DateTime?
+}
+
+model Conversation {
+  id             String           @id @default(cuid())
+  leadId         String
+  lead           Lead             @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  messages       Message[]
+  skillExecutions SkillExecution[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  content        String
+  status         String       @default("QUEUED") // QUEUED, SENT, DELIVERED, READ, FAILED
+  errorCode      String?
+  direction      String       @default("OUTBOUND") // INBOUND, OUTBOUND
+  sentAt         DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model SkillExecution {
+  id             String        @id @default(cuid())
+  skillName      String
+  outcome        String
+  errorMetadata  String?
+  leadId         String?
+  lead           Lead?         @relation(fields: [leadId], references: [id])
+  conversationId String?
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  createdAt      DateTime      @default(now())
+}
+
+model CSVImport {
+  id        String   @id @default(cuid())
+  filename  String
+  status    String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED
+  errorLogs String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  content   String
+  type      String   // INFO, WARNING, ERROR, SUCCESS
+  read      Boolean  @default(false)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Integration {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // WHATSAPP, TWITTER, TIKTOK
+  config    String   // JSON string
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, type])
+}

@@ -1,0 +1,104 @@
+.agent-workflow-card {
+  background: var(--sys-surface-color-roles-surface);
+  border: 1px solid var(--sys-outline-color-role-outline);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-top: 24px;
+}
+
+.flex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.agent-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+  position: relative;
+}
+
+.agent-timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--sys-surface-color-roles-surface-variant);
+  z-index: 0;
+}
+
+.agent-node {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+  position: relative;
+  background: var(--sys-surface-color-roles-surface);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--sys-outline-color-role-outline);
+  transition: all 0.3s ease;
+}
+
+.agent-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sys-surface-color-roles-surface-container);
+  color: var(--sys-surface-color-roles-on-surface-variant);
+  border: 4px solid var(--sys-surface-color-roles-surface);
+}
+
+.agent-node.running {
+  border-color: var(--sys-primary-color-roles-primary);
+  box-shadow: 0 0 0 2px var(--sys-primary-color-roles-primary-container);
+}
+
+.agent-node.running .agent-icon-wrapper {
+  background: var(--sys-primary-color-roles-primary-container);
+  color: var(--sys-primary-color-roles-primary);
+  animation: pulse 1.5s infinite;
+}
+
+.agent-node.completed {
+  border-color: var(--sys-succss-color-role-success);
+}
+
+.agent-node.completed .agent-icon-wrapper {
+  background: var(--sys-succss-color-role-success-container);
+  color: var(--sys-succss-color-role-success);
+}
+
+.agent-info {
+  flex: 1;
+}
+
+.status-text {
+  color: var(--sys-surface-color-roles-on-surface-variant);
+}
+
+.agent-node.running .status-text {
+  color: var(--sys-primary-color-roles-primary);
+}
+
+.agent-node.completed .status-text {
+  color: var(--sys-succss-color-role-success);
+}
+
+.completion-icon {
+  color: var(--sys-succss-color-role-success);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 134, 109, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(19, 134, 109, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 134, 109, 0); }
+}

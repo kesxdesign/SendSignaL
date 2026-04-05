@@ -1,0 +1,97 @@
+.csv-import-card {
+  background: var(--sys-surface-color-roles-surface);
+  border: 1px solid var(--sys-outline-color-role-outline);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.text-title-large {
+  font-family: var(--sys-title-large-fontfamily);
+  font-size: var(--sys-title-large-fontsize);
+  line-height: var(--sys-title-large-lineheight);
+  color: var(--sys-surface-color-roles-on-surface);
+  margin-bottom: 8px;
+}
+
+.text-body-medium {
+  font-family: var(--sys-body-medium-fontfamily);
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface-variant);
+}
+
+.drop-zone {
+  border: 2px dashed var(--sys-outline-color-role-outline);
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: var(--sys-surface-color-roles-surface-container);
+}
+
+.drop-zone:hover {
+  border-color: var(--sys-primary-color-roles-primary);
+  background: var(--sys-surface-color-roles-surface-container-high);
+}
+
+.drop-zone.has-file {
+  border-color: var(--sys-succss-color-role-success);
+  background: var(--sys-succss-color-role-success-container);
+}
+
+.upload-icon {
+  color: var(--sys-primary-color-roles-primary);
+  margin-bottom: 16px;
+}
+
+.has-file .upload-icon {
+  color: var(--sys-succss-color-role-success);
+}
+
+.file-info {
+  font-family: var(--sys-label-large-fontfamily);
+  font-size: var(--sys-label-large-fontsize);
+  font-weight: var(--sys-label-large-fontweight);
+  color: var(--sys-surface-color-roles-on-surface);
+}
+
+.drop-instructions {
+  font-family: var(--sys-body-medium-fontfamily);
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface);
+}
+
+.file-input-label {
+  cursor: pointer;
+}
+
+.text-primary-link {
+  color: var(--sys-primary-color-roles-primary);
+  font-weight: 600;
+}
+
+.text-primary-link:hover {
+  text-decoration: underline;
+}
+
+.success-state {
+  text-align: center;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.success-icon {
+  color: var(--sys-succss-color-role-success);
+}
+
+.upload-btn {
+  margin-top: 24px;
+  width: 100%;
+}

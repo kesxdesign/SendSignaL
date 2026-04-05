@@ -1,0 +1,574 @@
+/* ===================================================================
+   SendSignal — Login Page Styles
+   Pure CSS • No frameworks • Uses design-token variables
+   =================================================================== */
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--sys-body-large-fontfamily), 'Inter', sans-serif;
+  font-size: var(--sys-body-large-fontsize);
+  line-height: var(--sys-body-large-lineheight);
+  color: var(--sys-surface-color-roles-on-surface);
+  background-color: var(--sys-surface-color-roles-surface);
+  min-height: 100vh;
+}
+
+/* ---------- Page layout ---------- */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===================================================================
+   LEFT PANEL — Hero / Branding
+   =================================================================== */
+.login-hero {
+  position: relative;
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      160deg,
+      var(--color-pallete-primary-primary-20) 0%,
+      var(--color-pallete-primary-primary-30) 40%,
+      var(--color-pallete-primary-primary-40) 100%
+    );
+  color: var(--sys-primary-color-roles-on-primary);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+}
+
+/* Logo */
+.hero-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 22px;
+  backdrop-filter: blur(6px);
+}
+
+.logo-text {
+  font-size: var(--sys-title-large-fontsize);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Heading */
+.hero-heading {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-subtext {
+  font-size: var(--sys-body-large-fontsize);
+  line-height: 1.65;
+  opacity: 0.85;
+  max-width: 400px;
+}
+
+/* Decorative shapes */
+.hero-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  background: #fff;
+}
+
+.shape-1 {
+  width: 320px;
+  height: 320px;
+  top: -60px;
+  right: -80px;
+  animation: float 12s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 180px;
+  height: 180px;
+  bottom: 10%;
+  left: -40px;
+  animation: float 10s ease-in-out infinite 2s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  right: 15%;
+  animation: float 8s ease-in-out infinite 4s;
+}
+
+.shape-4 {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  right: 30%;
+  border-radius: 16px;
+  transform: rotate(45deg);
+  animation: float 9s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+
+/* ===================================================================
+   RIGHT PANEL — Login form
+   =================================================================== */
+.login-main {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--sys-surface-color-roles-surface-container-lowest);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Card header */
+.card-header {
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  font-size: var(--sys-headline-medium-fontsize);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sys-surface-color-roles-on-surface);
+  margin-bottom: 0.35rem;
+}
+
+.card-subtitle {
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface-variant);
+}
+
+/* ---------- Form ---------- */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label {
+  font-size: var(--sys-label-large-fontsize);
+  font-weight: var(--sys-label-large-fontweight);
+  color: var(--sys-surface-color-roles-on-surface);
+}
+
+.forgot-link {
+  font-size: var(--sys-label-medium-fontsize);
+  font-weight: 500;
+  color: var(--sys-primary-color-roles-primary);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.forgot-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.forgot-link:focus-visible {
+  outline: 2px solid var(--sys-primary-color-roles-primary);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Input wrapper */
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--sys-outline-color-role-outline);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem 0.875rem 0.8rem 2.75rem;
+  font-family: inherit;
+  font-size: var(--sys-body-large-fontsize);
+  color: var(--sys-surface-color-roles-on-surface);
+  background: var(--sys-surface-color-roles-surface-container-low);
+  border: 1.5px solid var(--sys-outline-color-role-outline-variant);
+  border-radius: 12px;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.form-input::placeholder {
+  color: var(--sys-outline-color-role-outline);
+  opacity: 0.6;
+}
+
+.form-input:hover {
+  border-color: var(--sys-outline-color-role-outline);
+}
+
+.form-input:focus {
+  border-color: var(--sys-primary-color-roles-primary);
+  box-shadow: 0 0 0 3px rgba(25, 179, 145, 0.15);
+  background: var(--sys-surface-color-roles-surface-container-lowest);
+}
+
+.form-input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+  color: var(--sys-primary-color-roles-primary);
+}
+
+/* ---------- Checkbox (custom) ---------- */
+.form-options {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-custom {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--sys-outline-color-role-outline);
+  border-radius: 5px;
+  background: var(--sys-surface-color-roles-surface-container-lowest);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.15s ease;
+}
+
+.checkbox-input:checked ~ .checkbox-custom {
+  background: var(--sys-primary-color-roles-primary);
+  border-color: var(--sys-primary-color-roles-primary);
+}
+
+.checkbox-input:checked ~ .checkbox-custom::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox-input:focus-visible ~ .checkbox-custom {
+  box-shadow: 0 0 0 3px rgba(25, 179, 145, 0.2);
+}
+
+.checkbox-text {
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface-variant);
+}
+
+/* ---------- Primary button ---------- */
+.btn-primary {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-family: inherit;
+  font-size: var(--sys-label-large-fontsize);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--sys-primary-color-roles-on-primary);
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-pallete-primary-primary-30),
+      var(--sys-primary-color-roles-primary)
+    );
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+  box-shadow:
+    0 2px 8px rgba(15, 109, 88, 0.25),
+    0 1px 3px rgba(15, 109, 88, 0.12);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 16px rgba(15, 109, 88, 0.3),
+    0 2px 6px rgba(15, 109, 88, 0.15);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(15, 109, 88, 0.2);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--sys-primary-color-roles-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sys-outline-color-role-outline-variant);
+}
+
+.divider-text {
+  font-size: var(--sys-label-medium-fontsize);
+  color: var(--sys-outline-color-role-outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Social button ---------- */
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: var(--sys-label-large-fontsize);
+  font-weight: 500;
+  color: var(--sys-surface-color-roles-on-surface);
+  background: var(--sys-surface-color-roles-surface-container-lowest);
+  border: 1.5px solid var(--sys-outline-color-role-outline-variant);
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-social:hover {
+  background: var(--sys-surface-color-roles-surface-container-low);
+  border-color: var(--sys-outline-color-role-outline);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.btn-social:active {
+  background: var(--sys-surface-color-roles-surface-container);
+}
+
+.btn-social:focus-visible {
+  outline: 2px solid var(--sys-primary-color-roles-primary);
+  outline-offset: 2px;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ---------- Sign-up ---------- */
+.signup-text {
+  margin-top: 1.75rem;
+  text-align: center;
+  font-size: var(--sys-body-medium-fontsize);
+  color: var(--sys-surface-color-roles-on-surface-variant);
+}
+
+.signup-link {
+  color: var(--sys-primary-color-roles-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.signup-link:focus-visible {
+  outline: 2px solid var(--sys-primary-color-roles-primary);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ===================================================================
+   RESPONSIVE
+   =================================================================== */
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-hero {
+    flex: 0 0 auto;
+    min-height: 280px;
+    padding: 2rem;
+  }
+
+  .hero-heading {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtext {
+    font-size: var(--sys-body-medium-fontsize);
+  }
+
+  .login-main {
+    flex: 1 1 auto;
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-hero {
+    min-height: 220px;
+    padding: 1.5rem;
+  }
+
+  .hero-heading {
+    font-size: 1.5rem;
+  }
+
+  .hero-logo {
+    margin-bottom: 1.5rem;
+  }
+
+  .login-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
+
+  .card-title {
+    font-size: var(--sys-headline-small-fontsize);
+  }
+
+  .form-input {
+    padding: 0.7rem 0.75rem 0.7rem 2.5rem;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1rem;
+  }
+}
