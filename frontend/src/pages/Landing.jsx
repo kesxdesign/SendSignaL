@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Zap, Users, MessageSquare, BarChart3, Shield, Upload } from 'lucide-react';
+import { ArrowRight, Zap, Users, MessageSquare, BarChart3, Shield, Upload, Menu, X } from 'lucide-react';
 import './Landing.css';
 
 const FEATURES = [
@@ -68,11 +68,15 @@ const HOW_STEPS = [
 ];
 
 export default function Landing() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <div className="landing-page">
       {/* ── Navigation ── */}
-      <nav className="landing-nav" id="landing-nav">
-        <Link to="/" className="nav-brand">
+      <nav className={`landing-nav ${isMenuOpen ? 'is-open' : ''}`} id="landing-nav">
+        <Link to="/" className="nav-brand" title="SendSignaL Home">
           <span className="nav-brand-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="none" viewBox="0 0 48 46">
               <path fill="#fff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z"/>
@@ -80,13 +84,21 @@ export default function Landing() {
           </span>
           <span className="nav-brand-text">SendSignaL</span>
         </Link>
-        <div className="nav-links">
-          <a href="#features" className="nav-link">Features</a>
-          <a href="#how-it-works" className="nav-link">How It Works</a>
-          <Link to="/login" className="nav-link">Sign In</Link>
-        </div>
-        <div className="nav-cta-wrapper">
-          <Link to="/register" className="nav-cta">Get Started</Link>
+
+        {/* Mobile Toggle */}
+        <button className="nav-mobile-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Links and CTA container */}
+        <div className="nav-content">
+          <div className="nav-links">
+            <a href="#features" className="nav-link" onClick={() => setIsMenuOpen(false)}>Features</a>
+            <a href="#how-it-works" className="nav-link" onClick={() => setIsMenuOpen(false)}>How It Works</a>
+          </div>
+          <div className="nav-cta-wrapper">
+            <Link to="/register" className="nav-cta" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
+          </div>
         </div>
       </nav>
 
@@ -111,94 +123,11 @@ export default function Landing() {
           </p>
           <div className="hero-actions">
             <Link to="/register" className="btn-hero-primary" id="hero-cta-primary">
-              Start Free Trial <ArrowRight size={18} />
-            </Link>
-            <Link to="/login" className="btn-hero-secondary" id="hero-cta-secondary">
-              Sign In
+              Start Free Trial
             </Link>
           </div>
         </div>
       </section>
-
-      {/* ── Stats ── */}
-      <section className="stats-section">
-        <div className="stats-grid">
-          {STATS.map((s, i) => (
-            <div className="stat-item" key={i}>
-              <span className="stat-value">{s.value}</span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section className="features-section" id="features">
-        <div className="section-header">
-          <span className="section-eyebrow">Features</span>
-          <h2 className="section-title">Everything you need to scale outreach</h2>
-          <p className="section-subtitle">
-            From lead ingestion to delivery tracking, SendSignal covers every step of your WhatsApp engagement workflow.
-          </p>
-        </div>
-        <div className="features-grid">
-          {FEATURES.map((f, i) => (
-            <div className="feature-card" key={i}>
-              <div className={`feature-icon-wrap feature-icon-wrap--${f.color}`}>
-                {f.icon}
-              </div>
-              <h3 className="feature-title">{f.title}</h3>
-              <p className="feature-desc">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── How It Works ── */}
-      <section className="how-section" id="how-it-works">
-        <div className="how-inner">
-          <div className="section-header">
-            <span className="section-eyebrow">How It Works</span>
-            <h2 className="section-title">Three steps to your first campaign</h2>
-            <p className="section-subtitle">
-              Get up and running in under five minutes — no engineering team required.
-            </p>
-          </div>
-          <div className="how-steps">
-            {HOW_STEPS.map((step) => (
-              <div className="how-step" key={step.num}>
-                <div className="how-step-num">{step.num}</div>
-                <h3 className="how-step-title">{step.title}</h3>
-                <p className="how-step-desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="cta-section">
-        <div className="cta-card">
-          <h2 className="cta-title">Ready to transform your outreach?</h2>
-          <p className="cta-subtitle">
-            Join thousands of businesses using SendSignal to engage customers
-            on the world's most popular messaging platform.
-          </p>
-          <Link to="/register" className="btn-cta" id="cta-get-started">
-            Get Started Free <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── Footer ── */}
-      <footer className="landing-footer">
-        <span>&copy; {new Date().getFullYear()} SendSignal. All rights reserved.</span>
-        <ul className="footer-links-list">
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </footer>
     </div>
   );
 }
